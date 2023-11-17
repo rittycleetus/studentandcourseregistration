@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% load static %}
+    <style>
+        h1{
+        color: white;
+        
+     
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size:50px;
+        text-align: center;
+        margin-top: 60px;
+        margin-left: 100px;
+    }
+    
+    
+body{
+    background-image: url('{% static "images/show.jpg" %}');  
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+th{
+color: aliceblue;
+}
+td{
+    color: aqua;
+}
+th,td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+</style>
+       
+        
+            <body>
+                <nav id="main-nav" class="navbar navbar-expand-md bg-light text-light fixed-top">
+                    <div class="container">
+                                <!-- Brand -->
+                                <div>
+                                
+                              
+                                <!-- Toggler/collapsibe Button -->
+                                <button class="navbar-toggler bg-info text-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                                  <span class="navbar-toggler-icon"></span>
+                                </button>
+                    </div>
+                                <!-- Navbar links -->
+                                <div>
+                                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                                  <ul class="navbar-nav justify-content-end">
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="{% url 'addstudent' %}" style="color: aliceblue;font-size: 20px;">Add Course/Student</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="{% url 'showstudent' %}" style="color: aliceblue;font-size: 20px;">Show Students</a>
+                                    </li>
+                                  
+                                  </ul>
+                                </div>
+                                </div>
+                    </div>
+                    
+                         </nav>
+            
+            
+                         <h1>STUDENTS DETAILS</h1>
+
+        <table border="4px" style="margin-top: 40px;margin-left:300px;background-color: black;padding: 5px;">
+    
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>AGE</th>
+                <th>JOINING DATE</th>
+                <th>COURSE</th>
+                <th>COURSE FEES</th>
+                <th>ACTIONS</th>
+    
+                
+            </tr>
+       
+   
+            {% for e in foreigncourse %}
+            <tr>
+                <td>{{e.id}}</td>
+                <td>{{e.student_name}}</td>
+                <td>{{e.student_age}}</td>
+                <td>{{e.student_email}}</td>
+                <td>{{e.joining_date}}</td>
+
+                <td>{{e.course.course_name}}</td>
+                <td>{{e.course.course_name}}</td>
+                
+                <td><a rol="button" class="btn  btn-warning btn-outline-dark btn-sm" href="{% url 'editstudent' e.id %}">EDIT</a>
+                <a rol="button" class="btn btn-danger btn-outline-dark btn-sm" href="{% url 'deletestudent' e.id %}">DELETE</a></td>
+                
+           
+            </tr>
+    
+            {% endfor %}
+            
+      
+        
+    </center>
+    </table>
+    {% block content %}
+    
+    {% endblock %}
+           
+    
+
+</body>
+</html>
+
+  
